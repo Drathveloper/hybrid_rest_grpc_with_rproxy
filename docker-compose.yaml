@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  app:
+    hostname: app
+    build:
+      dockerfile: app.Dockerfile
+    networks:
+      - compose
+  rproxy:
+    build:
+      dockerfile: openresty.Dockerfile
+    volumes:
+      - "./nginx:/etc/nginx/conf.d"
+      - "./certs:/etc/ssl"
+    ports:
+      - "443:443"
+      - "444:444"
+    networks:
+      - compose
+networks:
+  compose:

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "./pb";
+
+enum UserRole {
+  A = 0;
+  B = 1;
+  C = 2;
+}
+
+message CreateUserRequest {
+  string username = 1;
+  string password = 2;
+  repeated UserRole roles = 3;
+}
+
+message CreateUserResponse {
+  string id = 1;
+}
+
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+}
