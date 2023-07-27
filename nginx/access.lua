@@ -1,5 +1,8 @@
 local cjson = require "cjson"
 local httpc = require("resty.http").new()
+
+ngx.log(ngx.ERR, ngx.req.get_headers()["accessToken"])
+
 if not ngx.req.get_headers()["accessToken"] then
     ngx.exit(ngx.HTTP_UNAUTHORIZED)
     return
